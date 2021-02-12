@@ -1,0 +1,15 @@
+version: "3.8"
+
+services: 
+  rabbitmq:
+    #image: rabbitmq:3-management
+    build: .
+    environment: 
+      - RABBITMQ_ERLANG_COOKIE=dajkfljlfdsklkf
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=user
+    volumes:
+      - ./log:/var/log/rabbitmq
+    ports: 
+      - 5672:5672
+      - 8080:15672
