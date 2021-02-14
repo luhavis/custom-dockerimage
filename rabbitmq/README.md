@@ -1,3 +1,15 @@
+# 명령어 
+
+컨테이너 실행 
+```bash
+docker-compose up -d
+```
+
+로그 보기
+```bash
+docker-compose logs -f
+```
+
 # Issues
 
 ###  rabbitmq:3-management 이미지를 받아서 컨테이너 실행 시, management 플러그인이 실행이 안됨.
