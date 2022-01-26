@@ -9,18 +9,19 @@ services:
     logging:
       driver: "fluentd"
       options:
-        fluentd-address: fluentd:24224
+        fluentd-address: localhost:24224
         tag: httpd.access
     networks:
       - es-network
   fluentd:
-    image: fluent/fluentd:v1.14-debian-1
+    build: ./fluentd
     depends_on:
       - elasticsearch
     volumes:
-      - ./fluent.conf:/fluent/etc/fluent.conf
+      - ./fluentd/conf:/fluent/etc/fluent.conf
     ports:
       - "24224:24224"
+      - "24224:24224/udp"
     networks:
       - es-network
   elasticsearch:
