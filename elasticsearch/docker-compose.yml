@@ -1,32 +1,20 @@
 version: "3.9"
 services:
-  web:
-    image: httpd:2.4
-    ports:
-      - "80:80"
-    depends_on:
-      - fluentd
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-address: fluentd:24224
-        tag: httpd.access
-    networks:
-      - es-network
   fluentd:
-    image: fluent/fluentd:v1.14-debian-1
+    build: ./fluentd
     depends_on:
       - elasticsearch
     volumes:
-      - ./fluent.conf:/fluent/etc/fluent.conf
+      - ./fluentd/conf:/fluentd/etc
     ports:
       - "24224:24224"
+      - "24224:24224/udp"
     networks:
       - es-network
   elasticsearch:
     image: amazon/opendistro-for-elasticsearch:1.13.2
     ports:
-      - "9200:9200"
+      - "19200:9200"
       - "19600:9600"
     environment:
       - discovery.type=single-node
@@ -39,7 +27,6 @@ services:
       - es-network
   kibana:
     build:
-      context: .
       dockerfile: kibana.Dockerfile
     ports:
       - "5601:5601"
