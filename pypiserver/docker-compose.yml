@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  pypiserver:
+    image: pypiserver/pypiserver:v1.4.2
+    ports:
+      - "8082:8080"
+    volumes:
+      - "./packages:/data/packages"
+      - "./.htpasswd:/data/.htpasswd"
+    command: -P /data/.htpasswd -a update,download,list /data/packages -o
