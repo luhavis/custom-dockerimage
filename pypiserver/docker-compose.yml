@@ -6,5 +6,5 @@ services:
       - "8082:8080"
     volumes:
       - "./packages:/data/packages"
-      - "./.htpasswd:/data/.htpasswd"
-    command: -P /data/.htpasswd -a update,download,list /data/packages -o
+      - "./.htpasswd:/data/auth/.htpasswd"
+    command: -P /data/auth/.htpasswd -a update,download,list /data/packages -o
