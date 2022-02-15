@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  centos:
+    image: centos:6.8
+    command: /bin/bash -c "while true; do echo hello world; sleep 1; done"
+    ports:
+      - "31000:8080"
