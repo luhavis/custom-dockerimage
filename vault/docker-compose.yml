@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  vault:
+    image: vault:1.10.2
+    volumes:
+      - ./config:/vault/config
+      - ./data:/vault/data
+    ports:
+      - 8200:8200
+    cap_add:
+      - IPC_LOCK
+    command: vault server -config=/vault/config/config.hcl
