@@ -13,6 +13,6 @@ services:
       - "8443:443"
       - "8222:22"
     volumes:
-      - "./config:/etc/gitlab:Z"
-      - "./logs:/var/log/gitlab:Z"
-      - "./data:/var/opt/gitlab:Z"
+      - "./config:/etc/gitlab"
+      - "./logs:/var/log/gitlab"
+      - "./data:/var/opt/gitlab"
