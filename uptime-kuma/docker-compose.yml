@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  kuma:
+    image: louislam/uptime-kuma:1-alpine
+    container_name: kuma
+    restart: always
+    ports:
+      - 3001:3001
+    volumes:
+      - ./data:/app/data
