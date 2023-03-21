@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  homepage:
+    image: ghcr.io/benphelps/homepage
+    container_name: homepage
+    ports:
+      - 3000:3000
+    volumes:
+      - ./config:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock
