@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+    dashy:
+        image: lissy93/dashy
+        container_name: dashy
+        ports:
+            - 4000:80
+        restart: unless-stopped
+        volumes:
+            - ./config/conf.yml:/app/public/conf.yml
+        environment:
+            - NODE_ENV=production
