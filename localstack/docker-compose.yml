@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  localstack:
+    image: localstack/localstack
+    restart: unless-stopped
+    ports:
+      - 4566:4566
+      - 4510-4559:4510-4559
+    environment:
+      - DEBUG=true
