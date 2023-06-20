@@ -8,3 +8,8 @@ services:
       - 4510-4559:4510-4559
     environment:
       - DEBUG=true
+      - LC_ALL=C.UTF-8
+      - TZ=Asia/Seoul
+    volumes:
+      - ./data:/var/lib/localstack
+    
