@@ -11,6 +11,7 @@ services:
       - "24224:24224/udp"
     networks:
       - es-network
+    restart: unless-stopped
   elasticsearch:
     image: amazon/opendistro-for-elasticsearch:1.13.2
     ports:
@@ -25,6 +26,7 @@ services:
       - es-data:/usr/share/elasticsearch/data
     networks:
       - es-network
+    restart: unless-stopped
   kibana:
     build:
       dockerfile: kibana.Dockerfile
@@ -35,7 +37,7 @@ services:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
     networks:
       - es-network
-
+    restart: unless-stopped
 volumes:
   es-data:
 
