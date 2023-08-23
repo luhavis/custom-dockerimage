@@ -8,3 +8,4 @@ services:
       - "./packages:/data/packages"
       - "./.htpasswd:/data/auth/.htpasswd"
     command: -P /data/auth/.htpasswd -a update,download,list /data/packages -o
+    restart: unless-stopped
