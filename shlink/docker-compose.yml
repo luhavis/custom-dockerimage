@@ -1,0 +1,49 @@
+version: "3.9"
+services:
+  shlink:
+    image: ghcr.io/shlinkio/shlink
+    container_name: shlink
+    ports:
+      - 8080:8080
+    environment:
+      - DEFAULT_DOMAIN=test.com
+      - IS_HTTPS_ENABLES=true
+      - GEOLITE_LICENSE_KEY=input_license_key
+      - INITIAL_API_KEY=f1120e07-fd14-44dd-b863-3dea67cb60fb
+      - DB_DRIVER=postgres
+      - DB_NAME=test
+      - DB_USER=docker
+      - DB_PASSWORD=test
+      - DB_HOST=db
+      - DB_PORT=5432
+    depends_on:
+      - db
+    networks:
+      - shlink-network
+    restart: unless-stopped
+  db:
+    image: postgres:15.4-bullseye
+    environment:
+      - TZ=Asia/Seoul
+      - LC_ALL=C.UTF-8
+      - POSTGRES_USER=docker
+      - POSTGRES_DB=test
+      - POSTGRES_PASSWORD=test
+    networks:
+      - shlink-network
+    restart: unless-stopped
+  client:
+    image: ghcr.io/shlinkio/shlink-web-client:3
+    container_name: shlink-web-client
+    ports:
+      - 8000:80
+    environment:
+      - SHLINK_SERVER_URL=test.com
+      - SHLINK_SERVER_API_KEY=f1120e07-fd14-44dd-b863-3dea67cb60fb
+    networks:
+      - shlink-network
+    restart: unless-stopped
+networks:
+  shlink-network:
+
+
