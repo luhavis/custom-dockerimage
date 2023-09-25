@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  caddy:
+    image: caddy:2.7.4-alpine
+    volumes:
+      - ./scripts:/scripts
+      - ./config:/etc/caddy
+    ports:
+      - 80:80
+    command: sh -c "/scripts/init_script.sh && caddy run --config /etc/caddy/Caddyfile --adapter caddyfile"
+    
