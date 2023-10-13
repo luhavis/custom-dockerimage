@@ -5,14 +5,20 @@ services:
     image: gitlab/gitlab-ee
     container_name: gitlab
     restart: always
-    hostname: "gitlab.luhavis.dev"
+    hostname: "gitlab.com"
     environment:
       - TZ=Asia/Seoul
     ports:
-      - "8880:80"
-      - "8443:443"
-      - "8222:22"
+      - "80:80"
+      - "443:443"
+      - "22:22"
     volumes:
       - "./config:/etc/gitlab"
       - "./logs:/var/log/gitlab"
       - "./data:/var/opt/gitlab"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "100"
+    
