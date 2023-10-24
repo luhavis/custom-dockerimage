@@ -6,6 +6,7 @@ services:
     container_name: gitlab
     restart: always
     hostname: "gitlab.com"
+    shm_size: "2gb"
     environment:
       - TZ=Asia/Seoul
     ports:
