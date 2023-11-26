@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  npmplus:
+    image: zoeyvid/npmplus
+    container_name: npmplus
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./data:/data
+    environment:
+      - TZ=Asia/Seoul
