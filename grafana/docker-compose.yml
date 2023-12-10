@@ -6,4 +6,26 @@ services:
     restart: unless-stopped
     ports:
       - 3000:3000
-    
+    networks:
+      - grafana
+  loki:
+    image: grafana/loki:2.9.2
+    container_name: loki
+    restart: unless-stopped
+    volumes:
+      - ./loki:/app/loki
+    command: -config.file=/app/loki/config/loki-config.yaml
+    networks:
+      - grafana
+  promtail:
+    image: grafana/promtail:2.9.2
+    container_name: promtail
+    restart: unless-stopped
+    volumes:
+      - ./promtail:/app/promtail
+    command: -config.file=/app/promtail/config/promtail-config.yaml
+    networks:
+      - grafana
+
+networks:
+  grafana:
