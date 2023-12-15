@@ -1,0 +1,97 @@
+version: "3.9"
+services:
+  penpot-frontend:
+    image: penpotapp/frontend:1.19.3
+    container_name: penpot-frontend
+    restart: unless-stopped
+    ports:
+      - 9001:80
+    volumes:
+      - ./penpot_assets:/opt/data/assets
+    environment:
+      - PENPOT_FLAGS=enable-registration enable-login-with-password
+    networks:
+      - penpot
+    depends_on:
+      - penpot-backend
+      - penpot-exporter
+  penpot-backend:
+    image: penpotapp/backend:1.19.3
+    container_name: penpot-backend
+    restart: unless-stopped
+    volumes:
+      - ./penpot_assets:/opt/data/assets
+    environment:
+      - PENPOT_FLAGS=enable-registration enable-login-with-password disable-email-verification enable-smtp enable-prepl-server
+
+      - PENPOT_PUBLIC_URI=http://localhost:9001
+
+      - PENPOT_DATABASE_URI=postgresql://penpot-postgres/penpot
+      - PENPOT_DATABASE_USERNAME=penpot
+      - PENPOT_DATABASE_PASSWORD=penpot
+
+      - PENPOT_REDIS_URI=redis://penpot-redis/0
+      
+      - PENPOT_ASSETS_STORAGE_BACKEND=assets-fs
+      - PENPOT_STORAGE_ASSETS_FS_DIRECTORY=/opt/data/assets
+
+      - PENPOT_TELEMETRY_ENABLED=true
+
+      - PENPOT_SMTP_DEFAULT_FROM=no-reply@example.com
+      - PENPOT_SMTP_DEFAULT_REPLY_TO=no-reply@example.com
+      - PENPOT_SMTP_HOST=penpot-mailcatch
+      - PENPOT_SMTP_PORT=1025
+      - PENPOT_SMTP_USERNAME=
+      - PENPOT_SMTP_PASSWORD=
+      - PENPOT_SMTP_TLS=false
+      - PENPOT_SMTP_SSL=false
+
+    networks:
+      - penpot
+    depends_on:
+      - penpot-exporter
+      - penpot-postgres
+
+  penpot-exporter:
+    image: penpotapp/exporter:1.19.3
+    container_name: penpot-exporter
+    restart: unless-stopped
+    environment:
+      - PENPOT_PUBLIC_URI=http://penpot-frontend
+      - PENPOT_REDIS_URI=redis://penpot-redis/0
+    networks:
+      - penpot
+
+  penpot-postgres:
+    image: postgres:15
+    restart: unless-stopped
+    stop_signal: SIGINT
+    volumes:
+      - ./penpot_postgres_v15:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_INITDB_ARGS=--data-checksums
+      - POSTGRES_DB=penpot
+      - POSTGRES_USER=penpot
+      - POSTGRES_PASSWORD=penpot
+    networks:
+      - penpot
+
+  penpot-redis:
+    image: redis:7
+    restart: unless-stopped
+    networks:
+      - penpot
+
+  penpot-mailcatch:
+    image: sj26/mailcatcher:latest
+    restart: unless-stopped
+    container_name: penpot-mailcatch
+    expose:
+      - 1025
+    ports:
+      - 1080:1080
+    networks:
+      - penpot
+
+networks:
+  penpot:
