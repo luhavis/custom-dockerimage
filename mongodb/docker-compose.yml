@@ -1,12 +1,15 @@
- version: "3.9"
-  2 services:
-  3   mongo:
-  4     image: mongo:6.0
-  5     restart: unless-stopped
-  6     ports:
-  7       - "27017:27017"
-  8     environment:
-  9       - MONGO_INITDB_ROOT_USERNAME=mongo
- 10       - MONGO_INITDB_ROOT_PASSWORD=mongo
- 11     volumes:
- 12       - ./db:/data/db
+version: "3.9"
+services:
+  mongo:
+    image: mongo:6.0
+    restart: unless-stopped
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongo
+      - MONGO_INITDB_ROOT_PASSWORD=mongo
+    volumes:
+      - mongo-db:/data/db
+
+volumes:
+  mongo-db:
