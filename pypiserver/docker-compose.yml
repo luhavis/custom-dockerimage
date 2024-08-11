@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   pypiserver:
     image: pypiserver/pypiserver:v1.4.2

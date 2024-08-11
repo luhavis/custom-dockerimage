@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   portainer:
     image: portainer/portainer:1.24.2-alpine

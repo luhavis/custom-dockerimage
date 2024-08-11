@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   npm:
     image: jc21/nginx-proxy-manager:2.10.3
