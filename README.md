@@ -16,6 +16,7 @@
 - [MongoDB](https://github.com/luhavis/custom-dockerimage/tree/main/mongodb)
 - [Nginx Proxy Manager](https://github.com/luhavis/custom-dockerimage/tree/main/nginx-proxy-manager)
 - [NPMplus](https://github.com/luhavis/custom-dockerimage/tree/main/npmplus)
+- [Paperless-ngx](https://github.com/luhavis/custom-dockerimage/tree/main/paperless-ngx)
 - [Penpot](https://github.com/luhavis/custom-dockerimage/tree/main/penpot)
 - [Portainer](https://github.com/luhavis/custom-dockerimage/tree/main/portainer)
 - [PostgreSQL](https://github.com/luhavis/custom-dockerimage/tree/main/postgres)
