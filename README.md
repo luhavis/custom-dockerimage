@@ -4,6 +4,7 @@
 - [authentik](https://github.com/luhavis/custom-dockerimage/tree/main/authentik)
 - [caddy](https://github.com/luhavis/custom-dockerimage/tree/main/caddy)
 - [dashy](https://github.com/luhavis/custom-dockerimage/tree/main/dashy)
+- [dozzle](https://github.com/luhavis/custom-dockerimage/tree/main/dozzle)
 - [Elasticsearch](https://github.com/luhavis/custom-dockerimage/tree/main/elasticsearch)
 - [FFmpeg](https://github.com/luhavis/custom-dockerimage/tree/main/ffmpeg)
 - [GitLab](https://github.com/luhavis/custom-dockerimage/tree/main/gitlab)
