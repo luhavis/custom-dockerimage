@@ -1,0 +1,10 @@
+services:
+  mysql8:
+    image: mysql:8.0-bookworm
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - 3306:3306
+    volumes:
+      - ./data:/var/lib/mysql
