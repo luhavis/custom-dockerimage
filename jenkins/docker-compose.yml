@@ -1,7 +1,7 @@
 services:
   jenkins:
     image: jenkins/jenkins:lts
-    restart: always
+    restart: unless-stopped
     environment:
       - TZ=Asia/Seoul
     volumes:
@@ -11,3 +11,8 @@ services:
       - "8080:8080"
     privileged: true
     user: root
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "10"
