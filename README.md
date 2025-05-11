@@ -14,6 +14,7 @@
 - [it-tools](https://github.com/luhavis/custom-dockerimage/tree/main/it-tools)
 - [MongoDB](https://github.com/luhavis/custom-dockerimage/tree/main/mongodb)
 - [Mysql](https://github.com/luhavis/custom-dockerimage/tree/main/mysql)
+- [n8n](https://github.com/luhavis/custom-dockerimage/tree/main/n8n)
 - [Jenkins](https://github.com/luhavis/custom-dockerimage/tree/main/jenkins)
 - [Apache Kafka](https://github.com/luhavis/custom-dockerimage/tree/main/kafka)
 - [Kavita](https://github.com/luhavis/custom-dockerimage/tree/main/kavita)
